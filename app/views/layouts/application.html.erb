@@ -1,16 +1,27 @@
+<!--
+This is a page on the freedombrowser-network
+servers (stonklat.com)
+© <%= Time.now.year %> of freedombrowser
+(STONKLAT & The_Maple_Tree)
+-->
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>NewFreedombrowserApi</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-  </head>
-
-  <body>
+<html lang="en-gb">
+<head>
+  <title>OpenBrowser</title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body class="main-page">
+<div class="dialog">
+  <div>
     <%= yield %>
-  </body>
+  </div>
+  <p>For more Information about this utility go to <a href="https://freedombrowser.github.io/">freedombrowser.github.io</a></p>
+</div>
+</body>
 </html>
+
+
+

@@ -1,11 +1,13 @@
 require 'httparty'
 
 class PagesController < ApplicationController
-  http_basic_authenticate_with name: 'admin', password: 'fuckreplit', only: [:report_list]
+  # Make an environment variable called OPENBROWSER_ADMINS and set it to admin:password
+  http_basic_authenticate_with name: ENV['OPENBROWSER_ADMINS'].split(':')[0],
+                               password: ENV['OPENBROWSER_ADMINS'].split(':')[1], only: [:report_list]
   skip_before_action :verify_authenticity_token
 
   def index
-    redirect_to 'http://freedombrowser.org', status: 301, allow_other_host: true
+    render 'index'
   end
 
   def log_report
@@ -20,8 +22,8 @@ class PagesController < ApplicationController
     end
 
     jsonified = JSON.parse(error_text)
-    webhook_url = "https://discord.com/api/webhooks/1111760468936249444/c99L7UU5ykgmV4KI7Kqwr7UW0JOO-6YoDqM1aSfQQ9z2sKfB_3bgvYUOzdWzlp3FYDiK"
-    
+    webhook_url = 'https://discord.com/api/webhooks/1111760468936249444/c99L7UU5ykgmV4KI7Kqwr7UW0JOO-6YoDqM1aSfQQ9z2sKfB_3bgvYUOzdWzlp3FYDiK'
+
     payload = {
       content: nil,
       embeds: [{
@@ -38,35 +40,16 @@ class PagesController < ApplicationController
     json_payload = payload.to_json
     headers = { 'Content-Type' => 'application/json' }
 
-    HTTParty.post(webhook_url, body: json_payload, headers:)
+    HTTParty.post(webhook_url, body: json_payload, headers: headers)
 
     render plain: 'Report sent successfully'
   end
 
   def report_list
-    html = <<~HTML
-      <!DOCTYPE HTML>
-      <!--
-      This is a page on the freedombrowser-network
-      servers (stonklat.com)
-      © #{Time.now.year} of freedombrowser
-      (STONKLAT & The_Maple_Tree)
-      -->
-      <html>
-        <head>
-          <title>Freedombrowser Public Report</title>
-        </head>
-        <body>
-          <h1>List of reports from Freedombrowser users</h1>
-          <ul>
-    HTML
-
     reversed_lines = File.open('user_reports.txt', 'r').readlines.reverse_each
-    reversed_lines.each do |line|
-      html += "<li>#{line.chomp}</li>"
-    end
+    @list_items = reversed_lines.map { |line| "<li>#{line.chomp}</li>" }
 
-    html += '</ul></body></html>'
-    render html: html.html_safe
+    render 'report_list'
   end
+
 end

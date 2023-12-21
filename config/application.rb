@@ -23,5 +23,10 @@ module NewFreedombrowserApi
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.exceptions_app = routes
+
+    # Assets
+    config.assets.enabled = true
+    config.assets.paths << Rails.root.join('app', 'assets', 'javascripts')
   end
 end
