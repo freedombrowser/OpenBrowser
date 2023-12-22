@@ -27,6 +27,13 @@ module NewFreedombrowserApi
 
     # Assets
     config.assets.enabled = true
+    config.assets.configure do |env|
+      env.context_class.class_eval do
+        include ActionView::Helpers
+        include Rails.application.routes.url_helpers
+      end
+    end
+
     config.assets.paths << Rails.root.join('app', 'assets', 'javascripts')
   end
 end

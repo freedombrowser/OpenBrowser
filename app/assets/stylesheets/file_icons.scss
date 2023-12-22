@@ -1,0 +1,21 @@
+/* app/assets/stylesheets/file_icons.scss.erb */
+
+@mixin file-icon($file-type) {
+  .#{$file-type}-icon::before {
+    content: "";
+    display: inline-block;
+    width: 35px; /* Set the width and height based on your icon size */
+    height: 35px;
+    background: url('/assets/icons/#{$file-type}.png') no-repeat;
+    background-size: cover; /* Adjust as needed */
+    background-position: center center; /* Adjust as needed */
+    vertical-align: middle; /* Adjust the vertical alignment */
+  }
+}
+
+$icons: folder, html, pdf, text-file, binary-file,
+        wav, mp4, png, mp3, url, swf, mkv, css;
+
+@each $type in $icons {
+  @include file-icon($type);
+}

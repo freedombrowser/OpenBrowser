@@ -1,0 +1,13 @@
+<h1><%= @current_path %>/</h1>
+<ul>
+  <% @entries.each do |entry| %>
+    <li style="font-size: 23px">
+      <span class="<%= controller.file_type(entry.basename, @current_path) %>-icon"></span>
+      <% if entry.directory? %>
+        <%= link_to entry.basename + "/", request.path_info + "/" + entry.basename + '/' %>
+      <% else %>
+        <%= link_to entry.basename, request.path_info + "/" + entry.basename %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

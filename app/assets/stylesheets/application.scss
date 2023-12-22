@@ -14,12 +14,50 @@
  *= require_self
  */
 
+@import 'file_icons';
+
+a {
+    color: #0070C0; /* Change the color to a brighter blue */
+    position: relative; /* Set position to relative for child elements */
+}
+
 .main-page {
     background-color: #EFEFEF;
     color: #2E2F30;
     text-align: center;
     font-family: arial, sans-serif;
     margin: 0;
+}
+
+.main-page a {
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Add underline animation */
+.main-page a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #0070C0;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Expand underline on hover */
+.main-page a:hover::after {
+    width: 100%;
+}
+
+.main-page ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-page li::before {
+    content: ''; /* Unicode for a black circle */
+    margin-right: 0.5em; /* Add some space between the circle and the text */
 }
 
 .main-page div.dialog {
@@ -64,3 +102,4 @@
 .main-page ul {
     text-align: left !important;
 }
+
