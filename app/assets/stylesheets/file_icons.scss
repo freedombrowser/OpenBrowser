@@ -1,5 +1,3 @@
-/* app/assets/stylesheets/file_icons.scss.erb */
-
 @mixin file-icon($file-type) {
   .#{$file-type}-icon::before {
     content: "";

@@ -11,36 +11,42 @@ class PagesController < ApplicationController
   end
 
   def log_report
-    data = request.body.read
+    data = request.raw_post
+
     error_text = data.force_encoding('UTF-8')
     puts "Got report: #{error_text}"
+
     current_date = Time.now.strftime('%d/%m/%Y %H:%M:%S')
     final = "#{current_date}: #{ERB::Util.html_escape(error_text[0..149])}\n"
 
     File.open('user_reports.txt', 'a') do |file|
       file.puts(final)
     end
-
     jsonified = JSON.parse(error_text)
-    webhook_url = 'https://discord.com/api/webhooks/1111760468936249444/c99L7UU5ykgmV4KI7Kqwr7UW0JOO-6YoDqM1aSfQQ9z2sKfB_3bgvYUOzdWzlp3FYDiK'
+    webhook_url = ENV['REPORT_DISCORD_WEBHOOK']
+    puts ENV['REPORT_DISCORD_WEBHOOK']
 
+    embed_content = jsonified['content'] || 'Default Content'
     payload = {
-      content: nil,
+      content: '',
       embeds: [{
-                 description: jsonified['content'],
+                 description: embed_content,
                  color: 2894892,
                  footer: {
                    text: jsonified['ip']
                  },
-                 timestamp: Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+                 timestamp: Time.now.utc.iso8601
                }],
       attachments: []
     }
 
-    json_payload = payload.to_json
+    Rails.logger.info("Webhook URL: #{webhook_url}")
+    Rails.logger.info("Payload JSON: #{payload.to_json}")
+
     headers = { 'Content-Type' => 'application/json' }
 
-    HTTParty.post(webhook_url, body: json_payload, headers: headers)
+    response = HTTParty.post(webhook_url, body: payload.to_json, headers: headers)
+    Rails.logger.info("Discord API Response: #{response}")
 
     render plain: 'Report sent successfully'
   end
