@@ -1,0 +1,28 @@
+<h1><%= @title %></h1>
+
+<a href="javascript:history.back()"><-- Back</a>
+
+<hr><div>
+    <%= @description %>
+</div><hr>
+<h3>Information & Links</h3>
+<div style="text-align: left !important;">
+<p style="font-size: 120%">Freedombrowser URL:
+<a href="https://freedombrowser.org/<%= @website_link %>"><%= @website_link %></a></p>
+
+<p style="font-size: 120%">Direct Link:
+<% if @iframe==nil %>
+Hard-coded (Internal)
+<% else %>
+<a href="<%= @iframe %>"><%= @iframe %></a>
+<% end %>
+
+<p style="font-size: 120%">Keywords:
+<% if @keywords==nil %>
+None Included for this entry
+<% else %>
+<%= @keywords %>
+<% end %>
+
+</p>
+</div>

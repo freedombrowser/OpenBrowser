@@ -1,6 +1,6 @@
 <!--
-This is a page on the freedombrowser-network
-servers (stonklat.com)
+This is a page on the Freedombrowser network
+servers (freedombrowser.org and stonklat.com)
 © <%= Time.now.year %> of freedombrowser
 (STONKLAT & The_Maple_Tree)
 -->
@@ -19,7 +19,15 @@ servers (stonklat.com)
   <div>
     <%= yield %>
   </div>
-  <p>For more Information about this utility go to <a href="https://freedombrowser.github.io/">freedombrowser.github.io</a></p>
+  <p>Servers & hosting by freedombrowser.org</p>
+</div>
+<div class="powered" style="left: 0 !important;">
+  <%= image_tag 'poweredby_centos.png', alt: 'Powered by CentOS', width: '129', height: '193' %>
+  <%= image_tag 'poweredby_apache.png', alt: 'Powered by CentOS', width: '129', height: '129' %>
+</div>
+<div class="powered" style="right: 0 !important;">
+  <%= image_tag('Freedombrowser_logo.png', width: 210, height: 130) %>
+  <%= image_tag 'poweredby_britain.png', alt: 'Powered by CentOS', width: '129', height: '129' %>
 </div>
 </body>
 </html>

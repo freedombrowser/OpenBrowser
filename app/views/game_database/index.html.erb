@@ -1,0 +1,10 @@
+<h1>Site & Game Index</h1>
+<hr><p>Automatically downloaded from freedombrowser.org/static/sitemap.json</p><hr>
+<ul>
+  <li><a href="javascript:history.back()">../</a></li>
+  <% @titles.each_with_index do |title, index| %>
+
+      <li style="font-size: 120%;"><a href="<%= @links[index] %>"><%= title %></a></li>
+
+  <% end %>
+</ul>
