@@ -10,6 +10,10 @@ class PagesController < ApplicationController
     render 'index'
   end
 
+  def indexm
+    render 'indexm'
+  end
+
   def log_report
     data = request.raw_post
 
