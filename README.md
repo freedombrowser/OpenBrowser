@@ -1,24 +1,6 @@
-# README
+<p align="center"><img src="https://raw.githubusercontent.com/freedombrowser/OpenBrowser/main/app/assets/images/Openbrowser_logo.png" height="200"></p>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h1 align="center">OPENBROWSER</h1>
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This repository contains the backend for freedombrowser so stuff like the proxy databases CDNs and other stuff. It's made in RUBY ON RAILS
