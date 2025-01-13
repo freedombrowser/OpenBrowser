@@ -1,3 +1,4 @@
+# This will soon be updated due to replacing the json sitemap with the database based one
 class GameDatabaseController < ApplicationController
   require 'net/http'
   require 'json'
