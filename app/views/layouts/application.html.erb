@@ -13,6 +13,7 @@ servers (freedombrowser.org and stonklat.com)
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 <body class="main-page">
 <div class="dialog">
